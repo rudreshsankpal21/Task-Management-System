@@ -4,6 +4,7 @@ const {
   getAllTasks,
   getTaskById,
   updateTask,
+  deleteTask,
 } = require("../controllers/taskController");
 const authMiddleware = require("../middleware/authMiddleware");
 const taskRoutes = express.Router();
@@ -21,6 +22,6 @@ taskRoutes.get("/:id", authMiddleware, getTaskById);
 taskRoutes.put("/:id", authMiddleware, updateTask);
 
 // delete task
-// taskRoutes.delete("/:id", deleteTask);
+taskRoutes.delete("/:id", deleteTask);
 
 module.exports = taskRoutes;
