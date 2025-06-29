@@ -1,5 +1,5 @@
 const express = require("express");
-const { createTask } = require("../controllers/taskController");
+const { createTask, getAllTasks } = require("../controllers/taskController");
 const authMiddleware = require("../middleware/authMiddleware");
 const taskRoutes = express.Router();
 
@@ -7,7 +7,7 @@ const taskRoutes = express.Router();
 taskRoutes.post("/", authMiddleware, createTask);
 
 // Get all tasks
-// taskRoutes.get("/", getAllTasks);
+taskRoutes.get("/", authMiddleware, getAllTasks);
 
 // // Get task by id
 // taskRoutes.get("/:id", getTaskById);

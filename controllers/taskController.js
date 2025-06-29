@@ -2,7 +2,6 @@ const Task = require("../models/Task");
 const User = require("../models/User");
 
 // Create task
-
 const createTask = async (req, res) => {
   const { title, description, status, priority } = req.body;
   try {
@@ -33,6 +32,27 @@ const createTask = async (req, res) => {
   }
 };
 
+// get all tasks
+const getAllTasks = async (req, res) => {
+  try {
+    const tasks = await Task.find();
+    if (!tasks) {
+      return res.status(404).json({
+        message: "Tasks not found",
+      });
+    }
+    res.status(200).json({
+      tasks,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error getting tasks",
+      error,
+    });
+  }
+};
+
 module.exports = {
   createTask,
+  getAllTasks,
 };
